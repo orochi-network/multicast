@@ -1,19 +1,19 @@
 import hre from 'hardhat';
 import Deployer from './helpers/deployer';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
-import { MultiCast } from '../typechain';
+import { Multicast } from '../typechain';
 import BytesBuffer from './helpers/bytes';
 
-let deployer: Deployer, accounts: SignerWithAddress[], multiCast: MultiCast;
+let deployer: Deployer, accounts: SignerWithAddress[], multiCast: Multicast;
 
-describe('MultiCast', () => {
-  it('We should able to deploy MultiCast contract', async () => {
+describe('Multicast', () => {
+  it('We should able to deploy Multicast contract', async () => {
     deployer = Deployer.getInstance(hre);
     accounts = await hre.ethers.getSigners();
-    multiCast = <MultiCast>await deployer.connect(accounts[0]).contractDeploy('orochi/MultiCast', [], []);
+    multiCast = <Multicast>await deployer.connect(accounts[0]).contractDeploy('orochi/Multicast', [], []);
   });
 
-  it('We should able to call MultiCast contract', async () => {
+  it('We should able to call Multicast contract', async () => {
     const callData = [
       {
         address: multiCast.address,

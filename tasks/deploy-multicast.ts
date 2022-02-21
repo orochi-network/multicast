@@ -3,7 +3,7 @@ import '@nomiclabs/hardhat-ethers';
 import { task } from 'hardhat/config';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import Deployer from '../test/helpers/deployer';
-import { MultiCast } from '../typechain';
+import { Multicast } from '../typechain';
 
 task('deploy', 'Deploy multi cast contract').setAction(async (_taskArgs: any, hre: HardhatRuntimeEnvironment) => {
   const accounts = await hre.ethers.getSigners();
@@ -14,7 +14,7 @@ task('deploy', 'Deploy multi cast contract').setAction(async (_taskArgs: any, hr
   );
   const deployer: Deployer = Deployer.getInstance(hre);
   deployer.connect(accounts[0]);
-  <MultiCast>await deployer.contractDeploy('Orochi/MultiCast', []);
+  <Multicast>await deployer.contractDeploy('Orochi/Multicast', []);
   deployer.printReport();
 });
 

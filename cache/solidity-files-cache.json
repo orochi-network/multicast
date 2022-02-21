@@ -36,10 +36,10 @@
         "Bytes"
       ]
     },
-    "/Users/chiro/GitHub/orochi-multicast/contracts/MultiCast.sol": {
-      "lastModificationDate": 1645426104003,
-      "contentHash": "ebf8f4cc8ebb807790e19eb3cd591128",
-      "sourceName": "contracts/MultiCast.sol",
+    "/Users/chiro/GitHub/orochi-multicast/contracts/Multicast.sol": {
+      "lastModificationDate": 1645429249088,
+      "contentHash": "1e577767cf6de7fd16f028d0b07cb411",
+      "sourceName": "contracts/Multicast.sol",
       "solcConfig": {
         "version": "0.8.7",
         "settings": {
@@ -70,7 +70,7 @@
         ">=0.8.7"
       ],
       "artifacts": [
-        "MultiCast"
+        "Multicast"
       ]
     },
     "/Users/chiro/GitHub/orochi-multicast/contracts/Test.sol": {

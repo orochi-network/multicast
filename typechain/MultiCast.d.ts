@@ -21,7 +21,7 @@ import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 import { TypedEventFilter, TypedEvent, TypedListener } from "./commons";
 
-interface MultiCastInterface extends ethers.utils.Interface {
+interface MulticastInterface extends ethers.utils.Interface {
   functions: {
     "cast(bytes)": FunctionFragment;
     "eth(bytes)": FunctionFragment;
@@ -39,7 +39,7 @@ interface MultiCastInterface extends ethers.utils.Interface {
   events: {};
 }
 
-export class MultiCast extends Contract {
+export class Multicast extends Contract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -78,7 +78,7 @@ export class MultiCast extends Contract {
     toBlock?: string | number | undefined
   ): Promise<Array<TypedEvent<T & G>>>;
 
-  interface: MultiCastInterface;
+  interface: MulticastInterface;
 
   functions: {
     cast(input: BytesLike, overrides?: Overrides): Promise<ContractTransaction>;

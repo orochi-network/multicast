@@ -3,7 +3,7 @@ pragma solidity >=0.8.7;
 
 import './Bytes.sol';
 
-contract MultiCast {
+contract Multicast {
   using Bytes for bytes;
 
   struct MulticastResult {
