@@ -32,8 +32,25 @@ describe('Multicast', () => {
       const bufData = new BytesBuffer().writeBytes(callData[i].data).invoke();
       buf.writeAddress(callData[i].address).writeUint16(bufData.length).writeBytes(bufData);
     }
-    console.log(buf.invoke().toString('hex'));
-    const results = await multiCast.callStatic.cast(buf.invoke());
-    console.log('result', results);
+
+    console.log(await multiCast.callStatic.multicast(buf.invoke()));
+  });
+
+  it('We should able to call Multicast contract', async () => {
+    const callData = [
+      multiCast.interface.encodeFunctionData('state'),
+      multiCast.interface.encodeFunctionData('eth', [
+        '0xC014BA5EC014ba5ec014Ba5EC014ba5Ec014bA5E9C00CccFC23c3AC90c48D37226D4E2aF2D3d3415',
+      ]),
+    ];
+
+    const buf = new BytesBuffer().writeUint16(callData.length).writeAddress(multiCast.address);
+
+    for (let i = 0; i < callData.length; i += 1) {
+      const bufData = new BytesBuffer().writeBytes(callData[i]).invoke();
+      buf.writeUint16(bufData.length).writeBytes(bufData);
+    }
+
+    console.log(await multiCast.callStatic.cast(buf.invoke()));
   });
 });

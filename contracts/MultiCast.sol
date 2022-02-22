@@ -13,15 +13,30 @@ contract Multicast {
 
   struct EvmState {
     uint256 blockNumber;
-    bytes32 blockHash;
     bytes32 previousBlockHash;
-    address coinbase;
     uint256 difficulty;
     uint256 gaslimit;
     uint256 timestamp;
   }
 
+  // Cast to the same target
   function cast(bytes calldata input) public returns (MulticastResult[] memory returnData) {
+    uint256 numberOfPayload = input.readUint(0, 16);
+    address target = input.readAddress(2);
+    uint256 offset = 22;
+    uint256 length;
+    returnData = new MulticastResult[](numberOfPayload);
+    for (uint256 i = 0; i < numberOfPayload; i += 1) {
+      length = input.readUint(offset, 16);
+      offset += 2;
+      (bool success, bytes memory ret) = target.call(input[offset:offset + length]);
+      returnData[i] = MulticastResult({ success: success, result: ret });
+      offset += length;
+    }
+  }
+
+  // Cast to multi-target
+  function multicast(bytes calldata input) public returns (MulticastResult[] memory returnData) {
     uint256 numberOfPayload = input.readUint(0, 16);
     address target;
     uint256 length;
@@ -34,7 +49,6 @@ contract Multicast {
       offset += 2;
       (bool success, bytes memory ret) = target.call(input[offset:offset + length]);
       returnData[i] = MulticastResult({ success: success, result: ret });
-
       offset += length;
     }
   }
@@ -43,9 +57,7 @@ contract Multicast {
     return
       EvmState({
         blockNumber: block.number,
-        blockHash: blockhash(block.number),
         previousBlockHash: blockhash(block.number - 1),
-        coinbase: block.coinbase,
         difficulty: block.difficulty,
         gaslimit: block.gaslimit,
         timestamp: block.timestamp
