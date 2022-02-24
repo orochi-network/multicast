@@ -2,8 +2,13 @@
 
 An alternative of multicall.js
 
-## Fantom testnet
+## Available on several blockchains
 
-```
-0xB9efA2897569c4e9ed60E77dF598B91b24d208d9
-```
+https://blockscan.com/address/0xC82ECc4572321aa9F051443C30a0a0fA792b3798
+
+### Supported:
+
+- Fantom
+- Binance Smart Chain
+- Ethereum
+- Fantom testnet
