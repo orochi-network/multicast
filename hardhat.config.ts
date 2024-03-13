@@ -1,16 +1,14 @@
 /* eslint-disable global-require */
 import { HardhatUserConfig } from 'hardhat/types';
+import '@nomicfoundation/hardhat-toolbox';
+import '@nomicfoundation/hardhat-ethers';
 import { env } from './env';
-import 'hardhat-typechain';
-import '@nomiclabs/hardhat-ethers';
-import 'hardhat-gas-reporter';
-import 'solidity-coverage';
 
 if (env.DUELIST_KING_LOCAL_MNEMONIC !== 'baby nose young alone sport inside grain rather undo donor void exotic') {
   require('./tasks/deploy-multicast');
 }
 
-const compilers = ['0.8.7'].map((item: string) => ({
+const compilers = ['0.8.19'].map((item: string) => ({
   version: item,
   settings: {
     optimizer: {
