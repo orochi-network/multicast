@@ -107,3 +107,4 @@ typechain
 artifacts
 coverage
 cache
+typechain-types
